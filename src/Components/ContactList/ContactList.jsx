@@ -32,6 +32,6 @@ ContactList.propTypes = {
 
 ContactList.defaultProps = {
   contacts: [],
-}
+};
 
 export default ContactList;
