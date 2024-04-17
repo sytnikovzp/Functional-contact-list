@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import './ContactList.css';
 
 function ContactList({ contacts, onNewContact, onEditContact, onDelete }) {
-  console.log(contacts);
-  console.log(typeof(contacts))
   return (
     <div id='wrapper-list'>
       <div id='contact-list'>
