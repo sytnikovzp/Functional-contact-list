@@ -85,6 +85,7 @@ function App() {
           onDelete={deleteContact}
         />
         <ContactForm
+          key={currentContact.id}
           currentContact={currentContact}
           onSubmit={saveContact}
           onDelete={deleteContact}
