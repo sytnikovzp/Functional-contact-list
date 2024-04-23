@@ -13,7 +13,36 @@
       "postId": 1
     }
   ],
-  "contacts": [],
+  "contacts": [
+    {
+      "id": 1,
+      "fName": "Александр",
+      "lName": "Ситников",
+      "eMail": "sytnikov.zp@gmail.com",
+      "cPhone": "0976993354"
+    },
+    {
+      "id": 2,
+      "fName": "Надежда",
+      "lName": "Ситникова",
+      "eMail": "tester@gmail.com",
+      "cPhone": "0976996744"
+    },
+    {
+      "id": 3,
+      "fName": "Иван",
+      "lName": "Иванов",
+      "eMail": "",
+      "cPhone": "9379992"
+    },
+    {
+      "id": 4,
+      "fName": "John",
+      "lName": "Doe",
+      "eMail": "j.doe@gmail.com",
+      "cPhone": ""
+    }
+  ],
   "profile": {
     "name": "typicode"
   }

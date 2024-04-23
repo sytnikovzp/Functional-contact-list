@@ -2,22 +2,21 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import ContactList from './Components/ContactList/ContactList';
 import ContactForm from './Components/ContactForm/ContactForm';
-import { customAlphabet } from 'nanoid';
+import api from './api/contact-service';
 
 function App() {
   const [arrContacts, setArrContacts] = useState([]);
   const [currentContact, setCurrentContact] = useState(createEmptyContact());
 
-  useEffect(getFromStorage, []);
-
-  function getFromStorage() {
-    const contacts = JSON.parse(localStorage.getItem('contacts'));
-    if (!contacts) {
-      setArrContacts([]);
-    } else {
-      setArrContacts(contacts);
-    }
-  }
+  useEffect(() => {
+    api.get('/').then(({ data }) => {
+      if (!data) {
+        setArrContacts([]);
+      } else {
+        setArrContacts(data);
+      }
+    });
+  }, []);
 
   function createEmptyContact() {
     return {
@@ -38,22 +37,30 @@ function App() {
   };
 
   const createContact = (contact) => {
-    const nanoid = customAlphabet('1234567890', 5);
-    contact.id = nanoid();
-    const contacts = [...arrContacts, contact];
-    setArrContacts(contacts);
-    setCurrentContact(createEmptyContact());
-    saveContactToLS(contacts);
+    api.post('/', contact).then(({ data }) => {
+      const newContacts = [...arrContacts, data];
+      setArrContacts(newContacts);
+      setCurrentContact(createEmptyContact());
+    });
   };
 
-  function updateContact(contact) {
-    const contacts = arrContacts.map((item) =>
-      item.id === contact.id ? contact : item
-    );
-    setArrContacts(contacts);
-    setCurrentContact(contact);
-    saveContactToLS(contacts);
-  }
+  const updateContact = (contact) => {
+    api
+      .put(`/${contact.id}`, contact)
+      .then(({ data }) => {
+        const updatedContact = arrContacts.find(
+          (contact) => contact.id === data.id
+        );
+
+        const contacts = arrContacts.map((contact) =>
+          contact.id !== updatedContact.id ? contact : data
+        );
+
+        setArrContacts(contacts);
+        setCurrentContact(data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const saveContact = (contact) => {
     if (!contact.id) {
@@ -64,14 +71,10 @@ function App() {
   };
 
   const deleteContact = (id) => {
-    const contacts = [...arrContacts.filter((contact) => contact.id !== id)];
-    setArrContacts(contacts);
+    api.delete(`/${id}`).then(({ status }) => console.log(status));
+    const newContacts = arrContacts.filter((contact) => contact.id !== id);
+    setArrContacts(newContacts);
     setCurrentContact(createEmptyContact());
-    saveContactToLS(contacts);
-  };
-
-  const saveContactToLS = (arrContacts) => {
-    localStorage.setItem('contacts', JSON.stringify(arrContacts));
   };
 
   return (
