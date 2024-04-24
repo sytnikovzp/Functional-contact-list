@@ -28,6 +28,9 @@ function ContactList({ contacts, onNewContact, onEditContact, onDelete }) {
 
 ContactList.propTypes = {
   contacts: PropTypes.array,
+  onNewContact: PropTypes.func,
+  onEditContact: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 ContactList.defaultProps = {

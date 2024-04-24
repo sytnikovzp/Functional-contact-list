@@ -33,7 +33,7 @@
       "fName": "Иван",
       "lName": "Иванов",
       "eMail": "",
-      "cPhone": "9379992"
+      "cPhone": "0449379992"
     },
     {
       "id": 4,
@@ -41,6 +41,13 @@
       "lName": "Doe",
       "eMail": "j.doe@gmail.com",
       "cPhone": ""
+    },
+    {
+      "id": 5,
+      "fName": "Арина",
+      "lName": "Ситникова",
+      "eMail": "",
+      "cPhone": "0612397879"
     }
   ],
   "profile": {

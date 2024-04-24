@@ -48,12 +48,8 @@ function App() {
     api
       .put(`/${contact.id}`, contact)
       .then(({ data }) => {
-        const updatedContact = arrContacts.find(
-          (contact) => contact.id === data.id
-        );
-
         const contacts = arrContacts.map((contact) =>
-          contact.id !== updatedContact.id ? contact : data
+          contact.id !== data.id ? contact : data
         );
 
         setArrContacts(contacts);
@@ -88,7 +84,6 @@ function App() {
           onDelete={deleteContact}
         />
         <ContactForm
-          key={currentContact.id}
           currentContact={currentContact}
           onSubmit={saveContact}
           onDelete={deleteContact}

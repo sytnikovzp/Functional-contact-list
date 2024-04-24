@@ -122,7 +122,9 @@ function ContactForm({ currentContact, onSubmit, onDelete }) {
 }
 
 ContactForm.propTypes = {
+  currentContact: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
 };
 
 export default ContactForm;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './ContactItem.css';
 
 function ContactItem({ contact, onEdit, onDelete }) {
@@ -23,5 +24,11 @@ function ContactItem({ contact, onEdit, onDelete }) {
     </div>
   );
 }
+
+ContactItem.propTypes = {
+  contact: PropTypes.object,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+};
 
 export default ContactItem;
