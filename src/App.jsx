@@ -9,7 +9,7 @@ function App() {
   const [currentContact, setCurrentContact] = useState(createEmptyContact());
 
   useEffect(() => {
-    api.get('/').then(({ data }) => {
+    api.get('/contacts').then(({ data }) => {
       if (!data) {
         setArrContacts([]);
       } else {
@@ -37,7 +37,7 @@ function App() {
   };
 
   const createContact = (contact) => {
-    api.post('/', contact).then(({ data }) => {
+    api.post('/contacts', contact).then(({ data }) => {
       const newContacts = [...arrContacts, data];
       setArrContacts(newContacts);
       setCurrentContact(createEmptyContact());
@@ -46,7 +46,7 @@ function App() {
 
   const updateContact = (contact) => {
     api
-      .put(`/${contact.id}`, contact)
+      .put(`/contacts/${contact.id}`, contact)
       .then(({ data }) => {
         const contacts = arrContacts.map((contact) =>
           contact.id !== data.id ? contact : data
@@ -67,7 +67,7 @@ function App() {
   };
 
   const deleteContact = (id) => {
-    api.delete(`/${id}`).then(({ status }) => console.log(status));
+    api.delete(`/contacts/${id}`).then(({ status }) => console.log(status));
     const newContacts = arrContacts.filter((contact) => contact.id !== id);
     setArrContacts(newContacts);
     setCurrentContact(createEmptyContact());
