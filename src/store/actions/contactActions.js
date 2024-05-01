@@ -42,6 +42,20 @@ export const saveContact = (contact) => {
   };
 };
 
+// export const saveContact = (contact) => {
+//   if (!contact.id) {
+//     return {
+//       type: ACTION_TYPES.CREATE_CONTACT,
+//       payload: contact,
+//     };
+//   } else {
+//     return {
+//       type: ACTION_TYPES.UPDATE_CONTACT,
+//       payload: contact,
+//     };
+//   }
+// };
+
 export const deleteContact = (id) => {
   return {
     type: ACTION_TYPES.DELETE_CONTACT,

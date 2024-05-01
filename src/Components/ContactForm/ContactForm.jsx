@@ -1,23 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { saveContact, deleteContact } from '../../store/actions/contactActions';
+import api from '../../api/contact-service';
 import './ContactForm.css';
 
-function ContactForm({ currentContact, onSubmit, onDelete }) {
-  const [contact, setContact] = useState({ ...currentContact });
+function ContactForm() {
+  const dispatch = useDispatch();
+
+  const currentContact = useSelector((state) => state.currentContact);
+  const [contact, setContact] = useState(currentContact);
 
   useEffect(() => {
-    setContact({ ...currentContact });
+    setContact(currentContact);
   }, [currentContact]);
-
-  function createEmptyContact() {
-    return {
-      id: null,
-      fName: '',
-      lName: '',
-      eMail: '',
-      cPhone: '',
-    };
-  }
 
   const onInputChange = (event) => {
     setContact({
@@ -34,16 +30,31 @@ function ContactForm({ currentContact, onSubmit, onDelete }) {
     });
   };
 
+  function createEmptyContact() {
+    return {
+      id: null,
+      fName: '',
+      lName: '',
+      eMail: '',
+      cPhone: '',
+    };
+  }
+
   const onFormSubmit = (event) => {
+    console.log(contact);
     event.preventDefault();
-    onSubmit(contact);
-    if (!contact.id) {
-      setContact(createEmptyContact());
-    }
+    api
+      .post('/contacts', contact)
+      .then(({ data }) => dispatch(saveContact(data)));
+    setContact(createEmptyContact());
   };
 
   const onContactDelete = () => {
-    onDelete(contact.id);
+    api
+      .delete(`/contacts/${contact.id}`)
+      .then(({ statusText }) => console.log(statusText))
+      .catch((error) => console.log(error));
+    dispatch(deleteContact(contact.id));
     setContact(createEmptyContact());
   };
 
@@ -123,7 +134,7 @@ function ContactForm({ currentContact, onSubmit, onDelete }) {
 
 ContactForm.propTypes = {
   currentContact: PropTypes.object,
-  onSubmit: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func,
   onDelete: PropTypes.func,
 };
 
