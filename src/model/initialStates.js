@@ -7,3 +7,13 @@ export const contactsState = [
     cPhone: '0976993354',
   },
 ];
+
+export const currentContactState = [
+  {
+    id: null,
+    fName: '',
+    lName: '',
+    eMail: '',
+    cPhone: '',
+  },
+];
