@@ -46,7 +46,13 @@ function ContactForm() {
     const method = contact.id ? 'put' : 'post';
     const url = contact.id ? `/contacts/${contact.id}` : '/contacts';
 
-    api[method](url, contact).then(({ data }) => dispatch(saveContact(data)));
+    const newContact = contact; // Я не знаю как получить контакт из формы без ИД
+
+    api[method](url, contact).then(({ data, statusText }) =>
+      statusText === 'Created'
+        ? dispatch(saveContact(newContact))
+        : console.log(statusText, data)
+    );
     setContact(createEmptyContact());
   };
 
