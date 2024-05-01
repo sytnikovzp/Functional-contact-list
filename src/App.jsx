@@ -1,93 +1,14 @@
-// import { useState, useEffect } from 'react';
+import ContactList from './components/ContactList/ContactList';
+import ContactForm from './components/ContactForm/ContactForm';
 import './App.css';
-import ContactList from './Components/ContactList/ContactList';
-import ContactForm from './Components/ContactForm/ContactForm';
-// import api from './api/contact-service';
 
 function App() {
-  // const [arrContacts, setArrContacts] = useState([]);
-  // const [currentContact, setCurrentContact] = useState(createEmptyContact());
-
-  // useEffect(() => {
-  //   api.get('/contacts').then(({ data }) => {
-  //     if (!data) {
-  //       setArrContacts([]);
-  //     } else {
-  //       setArrContacts(data);
-  //     }
-  //   });
-  // }, []);
-
-  // function createEmptyContact() {
-  //   return {
-  //     id: null,
-  //     fName: '',
-  //     lName: '',
-  //     eMail: '',
-  //     cPhone: '',
-  //   };
-  // }
-
-  // const selectContact = (contact) => {
-  //   setCurrentContact(contact);
-  // };
-
-  // const addNewContact = () => {
-  //   setCurrentContact(createEmptyContact());
-  // };
-
-  // const createContact = (contact) => {
-  //   api.post('/contacts', contact).then(({ data }) => {
-  //     const newContacts = [...arrContacts, data];
-  //     setArrContacts(newContacts);
-  //     setCurrentContact(createEmptyContact());
-  //   });
-  // };
-
-  // const updateContact = (contact) => {
-  //   api
-  //     .put(`/contacts/${contact.id}`, contact)
-  //     .then(({ data }) => {
-  //       const contacts = arrContacts.map((contact) =>
-  //         contact.id !== data.id ? contact : data
-  //       );
-
-  //       setArrContacts(contacts);
-  //       setCurrentContact(data);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
-  // const saveContact = (contact) => {
-  //   if (!contact.id) {
-  //     createContact(contact);
-  //   } else {
-  //     updateContact(contact);
-  //   }
-  // };
-
-  // const deleteContact = (id) => {
-  //   api.delete(`/contacts/${id}`).then(({ status }) => console.log(status));
-  //   const newContacts = arrContacts.filter((contact) => contact.id !== id);
-  //   setArrContacts(newContacts);
-  //   setCurrentContact(createEmptyContact());
-  // };
-
   return (
     <div id='container'>
       <h2>Contact list</h2>
       <div id='main-form'>
-        <ContactList
-          // contacts={arrContacts}
-          // onNewContact={addNewContact}
-          // onEditContact={selectContact}
-          // onDelete={deleteContact}
-        />
-        <ContactForm
-          // currentContact={currentContact}
-          // onSubmit={saveContact}
-          // onDelete={deleteContact}
-        />
+        <ContactList />
+        <ContactForm />
       </div>
     </div>
   );
