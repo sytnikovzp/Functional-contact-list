@@ -2,6 +2,7 @@ import ContactItem from './ContactItem/ContactItem';
 import { getContacts } from '../../store/actions/contactActions';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import api from '../../api/contact-service';
 import './ContactList.css';
 
@@ -34,15 +35,12 @@ function ContactList() {
   );
 }
 
-// ContactList.propTypes = {
-//   contacts: PropTypes.array,
-//   onNewContact: PropTypes.func,
-//   onEditContact: PropTypes.func,
-//   onDelete: PropTypes.func,
-// };
+ContactList.propTypes = {
+  contacts: PropTypes.array,
+};
 
-// ContactList.defaultProps = {
-//   contacts: [],
-// };
+ContactList.defaultProps = {
+  contacts: [],
+};
 
 export default ContactList;
