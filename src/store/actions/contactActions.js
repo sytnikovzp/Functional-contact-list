@@ -7,13 +7,6 @@ export const getContacts = (contacts) => {
   };
 };
 
-export const createEmptyContact = () => {
-  return {
-    type: ACTION_TYPES.CREATE_EMPTY_CONTACT,
-    payload: {},
-  };
-};
-
 export const createContact = (contact) => {
   return {
     type: ACTION_TYPES.CREATE_CONTACT,
