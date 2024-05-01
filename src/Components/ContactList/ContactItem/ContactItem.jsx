@@ -1,18 +1,30 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import {
+  selectContact,
+  deleteContact,
+} from '../../../store/actions/contactActions';
+import api from '../../../api/contact-service';
 import './ContactItem.css';
 
-function ContactItem({ contact, onEdit, onDelete }) {
-  const onContactEdit = (event) => {
-    event.stopPropagation();
-    onEdit(contact);
+function ContactItem({ contact }) {
+  const dispatch = useDispatch();
+
+  const { id, fName, lName } = contact;
+
+  const onContactEdit = () => {
+    dispatch(selectContact(contact));
   };
 
   const onItemDelete = (event) => {
     event.stopPropagation();
-    onDelete(contact.id);
+    api
+      .delete(`/contacts/${id}`)
+      .then(({ statusText }) => console.log(statusText))
+      .catch((error) => console.log(error));
+    dispatch(deleteContact(id));
   };
 
-  const { fName, lName } = contact;
   return (
     <div className={'contact-item '} onDoubleClick={onContactEdit}>
       <p className='content'>

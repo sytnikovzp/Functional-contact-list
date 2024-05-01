@@ -20,7 +20,7 @@ export default function contactsReducer(
     case ACTION_TYPES.SELECT_CONTACT:
       return {
         ...state,
-        currentContact: [...state.currentContact, payload],
+        currentContact: payload,
       };
 
     case ACTION_TYPES.ADD_NEW_CONTACT:

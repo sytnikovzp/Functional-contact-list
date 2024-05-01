@@ -1,8 +1,8 @@
 export const contactsState = [
   {
     id: null,
-    fName: 'Нет связи ',
-    lName: 'с БД',
+    fName: 'Connecting to ',
+    lName: 'dababase...',
     eMail: '',
     cPhone: '',
   },

@@ -1,5 +1,5 @@
 import ContactItem from './ContactItem/ContactItem';
-import { getContacts } from '../../store/actions/contactActions';
+import { getContacts, addNewContact } from '../../store/actions/contactActions';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,6 +15,10 @@ function ContactList() {
     api.get('/contacts').then(({ data }) => dispatch(getContacts(data)));
   }, [dispatch]);
 
+  const onNewContact = () => {
+    dispatch(addNewContact());
+  };
+
   return (
     <div id='wrapper-list'>
       <div id='contact-list'>
@@ -23,11 +27,7 @@ function ContactList() {
         })}
       </div>
       <div className='btn-list-block'>
-        <button
-          className='btn'
-          id='new-btn'
-          // onClick={onNewContact}
-        >
+        <button className='btn' id='new-btn' onClick={onNewContact}>
           New
         </button>
       </div>
