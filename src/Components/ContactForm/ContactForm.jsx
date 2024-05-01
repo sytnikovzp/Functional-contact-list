@@ -41,11 +41,12 @@ function ContactForm() {
   }
 
   const onFormSubmit = (event) => {
-    console.log(contact);
     event.preventDefault();
-    api
-      .post('/contacts', contact)
-      .then(({ data }) => dispatch(saveContact(data)));
+
+    const method = contact.id ? 'put' : 'post';
+    const url = contact.id ? `/contacts/${contact.id}` : '/contacts';
+
+    api[method](url, contact).then(({ data }) => dispatch(saveContact(data)));
     setContact(createEmptyContact());
   };
 
