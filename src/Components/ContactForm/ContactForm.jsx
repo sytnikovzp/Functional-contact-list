@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveContact, deleteContact } from '../../store/actions/contactActions';
+import {
+  createContact,
+  updateContact,
+  deleteContact,
+} from '../../store/actions/contactActions';
 import api from '../../api/contact-service';
 import './ContactForm.css';
 
@@ -42,18 +46,16 @@ function ContactForm() {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-
-    const method = contact.id ? 'put' : 'post';
-    const url = contact.id ? `/contacts/${contact.id}` : '/contacts';
-
-    const newContact = contact; // Я не знаю как получить контакт из формы без ИД
-
-    api[method](url, contact).then(({ data, statusText }) =>
-      statusText === 'Created'
-        ? dispatch(saveContact(newContact))
-        : console.log(statusText, data)
-    );
-    setContact(createEmptyContact());
+    if (contact.id) {
+      api
+        .put(`/contacts/${contact.id}`, contact)
+        .then(({ data }) => dispatch(updateContact(data)));
+    } else {
+      api
+        .post('/contacts', contact)
+        .then(({ data }) => dispatch(createContact(data)));
+      setContact(createEmptyContact());
+    }
   };
 
   const onContactDelete = () => {

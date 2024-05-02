@@ -44,27 +44,7 @@ export default function contactsReducer(
             contact.id !== payload.id ? contact : payload
           ),
         ],
-        currentContact: createEmptyContact(),
       };
-
-    case ACTION_TYPES.SAVE_CONTACT:
-      if (!payload.id) {
-        return {
-          ...state,
-          arrContacts: [...state.arrContacts, payload],
-          currentContact: createEmptyContact(),
-        };
-      } else {
-        return {
-          ...state,
-          arrContacts: [
-            ...state.arrContacts.map((contact) =>
-              contact.id !== payload.id ? contact : payload
-            ),
-          ],
-          currentContact: createEmptyContact(),
-        };
-      }
 
     case ACTION_TYPES.DELETE_CONTACT:
       return {

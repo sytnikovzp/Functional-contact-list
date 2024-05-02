@@ -17,7 +17,6 @@ export const selectContact = (contact) => {
 export const addNewContact = () => {
   return {
     type: ACTION_TYPES.ADD_NEW_CONTACT,
-    // payload: contact,
   };
 };
 
@@ -34,27 +33,6 @@ export const updateContact = (contact) => {
     payload: contact,
   };
 };
-
-export const saveContact = (contact) => {
-  return {
-    type: ACTION_TYPES.SAVE_CONTACT,
-    payload: contact,
-  };
-};
-
-// export const saveContact = (contact) => {
-//   if (!contact.id) {
-//     return {
-//       type: ACTION_TYPES.CREATE_CONTACT,
-//       payload: contact,
-//     };
-//   } else {
-//     return {
-//       type: ACTION_TYPES.UPDATE_CONTACT,
-//       payload: contact,
-//     };
-//   }
-// };
 
 export const deleteContact = (id) => {
   return {

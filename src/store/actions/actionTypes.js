@@ -4,7 +4,6 @@ const ACTION_TYPES = {
   ADD_NEW_CONTACT: 'addNewContact',
   CREATE_CONTACT: 'createContact',
   UPDATE_CONTACT: 'updateContact',
-  SAVE_CONTACT: 'saveContact',
   DELETE_CONTACT: 'deleteContact',
 };
 
