@@ -1,9 +1,11 @@
 import ContactItem from './ContactItem/ContactItem';
-import { getContacts, addNewContact } from '../../store/actions/contactActions';
+import {
+  getContactsAction,
+  addNewContact,
+} from '../../store/actions/contactActions';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import api from '../../api/contact-service';
 import './ContactList.css';
 
 function ContactList() {
@@ -12,7 +14,7 @@ function ContactList() {
   const contacts = useSelector((state) => state.arrContacts);
 
   useEffect(() => {
-    api.get('/contacts').then(({ data }) => dispatch(getContacts(data)));
+    dispatch(getContactsAction());
   }, [dispatch]);
 
   const onNewContact = () => {

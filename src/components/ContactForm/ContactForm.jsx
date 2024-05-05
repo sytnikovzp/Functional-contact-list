@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  createContact,
-  updateContact,
-  deleteContact,
+  createContactAction,
+  updateContactAction,
+  deleteContactAction,
 } from '../../store/actions/contactActions';
-import api from '../../api/contact-service';
 import './ContactForm.css';
 
 function ContactForm() {
@@ -47,23 +46,15 @@ function ContactForm() {
   const onFormSubmit = (event) => {
     event.preventDefault();
     if (contact.id) {
-      api
-        .put(`/contacts/${contact.id}`, contact)
-        .then(({ data }) => dispatch(updateContact(data)));
+      dispatch(updateContactAction(contact));
     } else {
-      api
-        .post('/contacts', contact)
-        .then(({ data }) => dispatch(createContact(data)));
+      dispatch(createContactAction(contact));
       setContact(createEmptyContact());
     }
   };
 
   const onContactDelete = () => {
-    api
-      .delete(`/contacts/${contact.id}`)
-      .then(({ statusText }) => console.log(statusText))
-      .catch((error) => console.log(error));
-    dispatch(deleteContact(contact.id));
+    dispatch(deleteContactAction(contact.id));
     setContact(createEmptyContact());
   };
 

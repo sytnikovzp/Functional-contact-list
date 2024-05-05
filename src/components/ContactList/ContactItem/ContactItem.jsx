@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import {
   selectContact,
-  deleteContact,
+  deleteContactAction,
 } from '../../../store/actions/contactActions';
-import api from '../../../api/contact-service';
 import './ContactItem.css';
 
 function ContactItem({ contact }) {
@@ -18,15 +17,11 @@ function ContactItem({ contact }) {
 
   const onItemDelete = (event) => {
     event.stopPropagation();
-    api
-      .delete(`/contacts/${id}`)
-      .then(({ statusText }) => console.log(statusText))
-      .catch((error) => console.log(error));
-    dispatch(deleteContact(id));
+    dispatch(deleteContactAction(id));
   };
 
   return (
-    <div className={'contact-item '} onDoubleClick={onContactEdit}>
+    <div className={'contact-item'} onDoubleClick={onContactEdit}>
       <p className='content'>
         {fName} {lName}
       </p>
