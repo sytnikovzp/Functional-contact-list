@@ -33,29 +33,17 @@ function ContactForm() {
     });
   };
 
-  function createEmptyContact() {
-    return {
-      id: null,
-      fName: '',
-      lName: '',
-      eMail: '',
-      cPhone: '',
-    };
-  }
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     if (contact.id) {
       dispatch(updateContactAction(contact));
     } else {
       dispatch(createContactAction(contact));
-      setContact(createEmptyContact());
     }
   };
 
   const onContactDelete = () => {
     dispatch(deleteContactAction(contact.id));
-    setContact(createEmptyContact());
   };
 
   return (

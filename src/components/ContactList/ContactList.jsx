@@ -1,11 +1,11 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import ContactItem from './ContactItem/ContactItem';
 import {
   getContactsAction,
   addNewContact,
 } from '../../store/actions/contactActions';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import './ContactList.css';
 
 function ContactList() {

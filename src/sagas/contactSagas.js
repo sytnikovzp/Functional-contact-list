@@ -53,7 +53,7 @@ export function* updateContactSaga({ payload }) {
 export function* deleteContactSaga({ payload }) {
   yield put(deleteContactRequest());
   try {
-    yield api.delete(`/contacts/${payload}`, payload);
+    yield api.delete(`/contacts/${payload}`);
     yield put(deleteContactSuccess(payload));
   } catch (error) {
     yield put(deleteContactError(error));

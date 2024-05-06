@@ -73,7 +73,7 @@ export const deleteContactRequest = () => {
 export const deleteContactSuccess = (payload) => {
   return {
     type: ACTION_TYPES.DELETE_CONTACT_SUCCESS,
-    payload: payload,
+    payload,
   };
 };
 
