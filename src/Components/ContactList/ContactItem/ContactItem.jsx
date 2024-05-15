@@ -3,8 +3,7 @@ import { useDispatch } from 'react-redux';
 import {
   selectContact,
   deleteContact,
-} from '../../../store/actions/contactActions';
-import api from '../../../api/contact-service';
+} from '../../../store/slices/contactSlice';
 import './ContactItem.css';
 
 function ContactItem({ contact }) {
@@ -18,10 +17,6 @@ function ContactItem({ contact }) {
 
   const onItemDelete = (event) => {
     event.stopPropagation();
-    api
-      .delete(`/contacts/${id}`)
-      .then(({ statusText }) => console.log(statusText))
-      .catch((error) => console.log(error));
     dispatch(deleteContact(id));
   };
 

@@ -5,14 +5,15 @@ import {
   createContact,
   updateContact,
   deleteContact,
-} from '../../store/actions/contactActions';
-import api from '../../api/contact-service';
+} from '../../store/slices/contactSlice';
 import './ContactForm.css';
 
 function ContactForm() {
   const dispatch = useDispatch();
 
-  const currentContact = useSelector((state) => state.currentContact);
+  const currentContact = useSelector(
+    (state) => state.contactList.currentContact
+  );
   const [contact, setContact] = useState(currentContact);
 
   useEffect(() => {
@@ -34,37 +35,17 @@ function ContactForm() {
     });
   };
 
-  function createEmptyContact() {
-    return {
-      id: null,
-      fName: '',
-      lName: '',
-      eMail: '',
-      cPhone: '',
-    };
-  }
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     if (contact.id) {
-      api
-        .put(`/contacts/${contact.id}`, contact)
-        .then(({ data }) => dispatch(updateContact(data)));
+      dispatch(updateContact(contact));
     } else {
-      api
-        .post('/contacts', contact)
-        .then(({ data }) => dispatch(createContact(data)));
-      setContact(createEmptyContact());
+      dispatch(createContact(contact));
     }
   };
 
   const onContactDelete = () => {
-    api
-      .delete(`/contacts/${contact.id}`)
-      .then(({ statusText }) => console.log(statusText))
-      .catch((error) => console.log(error));
     dispatch(deleteContact(contact.id));
-    setContact(createEmptyContact());
   };
 
   return (
