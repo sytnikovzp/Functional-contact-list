@@ -44,7 +44,8 @@ function ContactForm() {
     }
   };
 
-  const onContactDelete = () => {
+  const onContactDelete = (event) => {
+    event.preventDefault();
     dispatch(deleteContact(contact.id));
   };
 
