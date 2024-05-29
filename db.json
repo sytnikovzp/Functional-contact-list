@@ -29,18 +29,18 @@
       "cPhone": "+38(061) 239-78-79"
     },
     {
-      "id": 7,
-      "fName": "Nadia",
-      "lName": "Олександр",
-      "eMail": "nepushkin93@gmail.com",
-      "cPhone": "+38(097) 699-33-54"
+      "id": 6,
+      "fName": "Андрей",
+      "lName": "Рыкун",
+      "eMail": "xfdf@gmail.com",
+      "cPhone": "+38(066) 324-44-56"
     },
     {
-      "id": 8,
-      "fName": "dfg",
-      "lName": "Олександр",
-      "eMail": "nepushkin93@gmail.com",
-      "cPhone": "+38(097) 699-33-54"
+      "id": 7,
+      "fName": "John",
+      "lName": "Doe",
+      "eMail": "jdoe@gmail.com",
+      "cPhone": "+38(056) 425-35-12"
     }
   ]
 }

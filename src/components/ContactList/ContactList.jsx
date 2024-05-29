@@ -47,11 +47,19 @@ function ContactList() {
           paddingTop: '10px',
         }}
       >
-        <Grid container spacing={1}>
-          {contacts.map((contact) => {
-            return <ContactItem key={contact.id} contact={contact} />;
-          })}
-        </Grid>
+        <Box
+          sx={{
+            width: '100%',
+            height: '380px',
+            overflowY: 'auto',
+          }}
+        >
+          <Grid container spacing={1}>
+            {contacts.map((contact) => {
+              return <ContactItem key={contact.id} contact={contact} />;
+            })}
+          </Grid>
+        </Box>
       </Paper>
 
       <Stack
