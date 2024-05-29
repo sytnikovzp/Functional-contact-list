@@ -154,7 +154,7 @@ function ContactForm() {
               variant='outlined'
               color='error'
               style={buttonStyle}
-              endIcon={<PersonRemoveIcon />}
+              startIcon={<PersonRemoveIcon />}
               onClick={onContactDelete}
             >
               Delete
