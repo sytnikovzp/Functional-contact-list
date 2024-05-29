@@ -30,6 +30,26 @@ function ContactItem({ contact }) {
 
   const initialsAvatar = `${fName.charAt(0)}${lName.charAt(0)}`;
 
+  const generateAvatarColor = (name) => {
+    const colors = [
+      '#F44336',
+      '#9C27B0',
+      '#3F51B5',
+      '#03A9F4',
+      '#4CAF50',
+      '#CDDC39',
+      '#FFEB3B',
+      '#FFC107',
+      '#FF5722',
+    ];
+    const charCode = name.charCodeAt(0) + name.charCodeAt(name.length - 1);
+    return colors[charCode % colors.length];
+  };
+
+  const avatarStyle = {
+    backgroundColor: generateAvatarColor(initialsAvatar),
+  };
+
   const itemStyle = {
     border: '1px solid #009688',
     borderRadius: 5,
@@ -48,7 +68,7 @@ function ContactItem({ contact }) {
         }
       >
         <ListItemAvatar>
-          <Avatar>{initialsAvatar}</Avatar>
+          <Avatar style={avatarStyle}>{initialsAvatar}</Avatar>
         </ListItemAvatar>
         <ListItemText primary={`${fName} ${lName}`} />
       </ListItem>
