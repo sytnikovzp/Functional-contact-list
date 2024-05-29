@@ -17,7 +17,7 @@ function App() {
       }}
     >
       <Paper
-        elevation={3}
+        elevation={10}
         sx={{
           padding: 3,
           borderRadius: 2,

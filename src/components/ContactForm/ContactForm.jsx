@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { emptyContact } from '../../constants';
+import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -55,6 +56,8 @@ function ContactForm() {
     display: 'flex',
     alignItems: 'baseline',
     gap: 1,
+    width: '90%',
+
   };
 
   const buttonStyle = {
@@ -64,16 +67,17 @@ function ContactForm() {
   const renderForm = ({ errors, touched, setFieldValue }) => {
     return (
       <Form id='contact-form'>
-        <Box
-          id='wrapper-form'
+        <Paper
+          elevation={3}
           sx={{
+            borderRadius: 0,
             display: 'flex',
             flexDirection: 'column',
-            border: '1px solid black',
-            width: '275px',
+            alignItems: 'center',
+            gap: 3,
+            width: '300px',
             height: '400px',
-            padding: '10px',
-            gap: 2,
+            paddingTop: '10px',
           }}
         >
           <Box sx={contactItemStyle}>
@@ -81,7 +85,7 @@ function ContactForm() {
               name='fName'
               as={TextField}
               label='First name'
-              variant='outlined'
+              variant='filled'
               fullWidth
             />
             <IconButton onClick={() => setFieldValue('fName', '')}>
@@ -93,7 +97,7 @@ function ContactForm() {
               name='lName'
               as={TextField}
               label='Last name'
-              variant='outlined'
+              variant='filled'
               fullWidth
             />
             <IconButton onClick={() => setFieldValue('lName', '')}>
@@ -105,7 +109,7 @@ function ContactForm() {
               name='eMail'
               as={TextField}
               label='E-mail'
-              variant='outlined'
+              variant='filled'
               fullWidth
               error={touched.eMail && Boolean(errors.eMail)}
               helperText={touched.eMail && errors.eMail}
@@ -119,7 +123,7 @@ function ContactForm() {
               name='cPhone'
               as={TextField}
               label='Phone'
-              variant='outlined'
+              variant='filled'
               fullWidth
               error={touched.cPhone && Boolean(errors.cPhone)}
               helperText={touched.cPhone && errors.cPhone}
@@ -128,7 +132,7 @@ function ContactForm() {
               <ClearIcon />
             </IconButton>
           </Box>
-        </Box>
+        </Paper>
 
         <Stack
           direction='row'
