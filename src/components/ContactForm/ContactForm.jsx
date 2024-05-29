@@ -1,14 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { emptyContact } from '../../constants';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import ClearIcon from '@mui/icons-material/Clear';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import {
   createContact,
   updateContact,
   deleteContact,
 } from '../../store/slices/contactSlice';
-import './ContactForm.css';
 
 function ContactForm() {
   const dispatch = useDispatch();
@@ -22,13 +29,13 @@ function ContactForm() {
   const schema = Yup.object().shape({
     eMail: Yup.string()
       .email('Invalid email address')
-      .required('Email is required field'),
+      .required('Email is a required field'),
     cPhone: Yup.string()
       .matches(
         cPhoneRegExp,
         'The phone must be in the format +38(0XX) XXX-XX-XX'
       )
-      .required('Phone is required field'),
+      .required('Phone is a required field'),
   });
 
   const onFormSubmit = (values, { resetForm }) => {
@@ -44,78 +51,118 @@ function ContactForm() {
     dispatch(deleteContact(currentContact.id));
   };
 
-  const renderForm = ({ setFieldValue }) => {
+  const contactItemStyle = {
+    display: 'flex',
+    alignItems: 'baseline',
+    gap: 1,
+  };
+
+  const buttonStyle = {
+    width: '120px',
+  };
+
+  const renderForm = ({ errors, touched, setFieldValue }) => {
     return (
       <Form id='contact-form'>
-        <div id='wrapper-form'>
-          <div className='contact-form-item'>
+        <Box
+          id='wrapper-form'
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            border: '1px solid black',
+            width: '275px',
+            height: '400px',
+            padding: '10px',
+            gap: 2,
+          }}
+        >
+          <Box sx={contactItemStyle}>
             <Field
-              type='text'
               name='fName'
-              id='fName'
-              placeholder='First name'
+              as={TextField}
+              label='First name'
+              variant='outlined'
+              fullWidth
             />
-            <span
-              className='clear-btn'
-              onClick={() => setFieldValue('fName', '')}
-            >
-              X
-            </span>
-          </div>
-          <div className='contact-form-item'>
+            <IconButton onClick={() => setFieldValue('fName', '')}>
+              <ClearIcon />
+            </IconButton>
+          </Box>
+          <Box sx={contactItemStyle}>
             <Field
-              type='text'
               name='lName'
-              id='lName'
-              placeholder='Last name'
+              as={TextField}
+              label='Last name'
+              variant='outlined'
+              fullWidth
             />
-            <span
-              className='clear-btn'
-              onClick={() => setFieldValue('lName', '')}
-            >
-              X
-            </span>
-          </div>
-          <div className='contact-form-item'>
-            <Field type='email' name='eMail' id='eMail' placeholder='E-mail' />
-            <span
-              className='clear-btn'
-              onClick={() => setFieldValue('eMail', '')}
-            >
-              X
-            </span>
-          </div>
-          <ErrorMessage name='eMail' component='div' className='error' />
-          <div className='contact-form-item'>
-            <Field type='tel' name='cPhone' id='cPhone' placeholder='Phone' />
-            <span
-              className='clear-btn'
-              onClick={() => setFieldValue('cPhone', '')}
-            >
-              X
-            </span>
-          </div>
-          <ErrorMessage name='cPhone' component='div' className='error' />
-        </div>
+            <IconButton onClick={() => setFieldValue('lName', '')}>
+              <ClearIcon />
+            </IconButton>
+          </Box>
+          <Box sx={contactItemStyle}>
+            <Field
+              name='eMail'
+              as={TextField}
+              label='E-mail'
+              variant='outlined'
+              fullWidth
+              error={touched.eMail && Boolean(errors.eMail)}
+              helperText={touched.eMail && errors.eMail}
+            />
+            <IconButton onClick={() => setFieldValue('eMail', '')}>
+              <ClearIcon />
+            </IconButton>
+          </Box>
+          <Box sx={contactItemStyle}>
+            <Field
+              name='cPhone'
+              as={TextField}
+              label='Phone'
+              variant='outlined'
+              fullWidth
+              error={touched.cPhone && Boolean(errors.cPhone)}
+              helperText={touched.cPhone && errors.cPhone}
+            />
+            <IconButton onClick={() => setFieldValue('cPhone', '')}>
+              <ClearIcon />
+            </IconButton>
+          </Box>
+        </Box>
 
-        <div className='btn-form-block'>
-          <button type='submit' id='save-btn' className='btn'>
+        <Stack
+          direction='row'
+          justifyContent='center'
+          spacing={3}
+          mt='40px'
+          width='275px'
+        >
+          <Button
+            type='submit'
+            id='save-btn'
+            variant='contained'
+            style={buttonStyle}
+            startIcon={<PersonAddIcon />}
+          >
             Save
-          </button>
+          </Button>
 
           {currentContact.id ? (
-            <button
+            <Button
               id='delButton'
               type='button'
-              className='btn'
+              variant='outlined'
+              color='error'
+              style={buttonStyle}
+              endIcon={<PersonRemoveIcon />}
               onClick={onContactDelete}
             >
               Delete
-            </button>
+            </Button>
           ) : (
             ''
           )}
-        </div>
+        </Stack>
       </Form>
     );
   };
@@ -127,7 +174,9 @@ function ContactForm() {
       validationSchema={schema}
       enableReinitialize
     >
-      {renderForm}
+      {({ errors, touched, setFieldValue }) =>
+        renderForm({ errors, touched, setFieldValue })
+      }
     </Formik>
   );
 }
