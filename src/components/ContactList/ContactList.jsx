@@ -35,7 +35,7 @@ function ContactList() {
       }}
     >
       <Paper
-        elevation={3}
+        elevation={0}
         sx={{
           borderRadius: 0,
           display: 'flex',

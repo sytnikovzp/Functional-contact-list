@@ -28,13 +28,19 @@ function ContactItem({ contact }) {
     dispatch(deleteContact(id));
   };
 
-  const initials = `${fName.charAt(0)}${lName.charAt(0)}`;
+  const initialsAvatar = `${fName.charAt(0)}${lName.charAt(0)}`;
+
+  const itemStyle = {
+    border: '1px solid #009688',
+    borderRadius: 5,
+  };
 
   return (
     <Grid item xs={12}>
       <ListItem
         button
         onClick={onContactEdit}
+        style={itemStyle}
         secondaryAction={
           <IconButton edge='end' aria-label='delete' onClick={onItemDelete}>
             <DeleteIcon />
@@ -42,7 +48,7 @@ function ContactItem({ contact }) {
         }
       >
         <ListItemAvatar>
-          <Avatar>{initials}</Avatar>
+          <Avatar>{initialsAvatar}</Avatar>
         </ListItemAvatar>
         <ListItemText primary={`${fName} ${lName}`} />
       </ListItem>

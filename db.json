@@ -27,6 +27,13 @@
       "lName": "Ситникова",
       "eMail": "Arina@gmail.com",
       "cPhone": "+38(061) 239-78-79"
+    },
+    {
+      "id": 7,
+      "fName": "Nadia",
+      "lName": "Олександр",
+      "eMail": "nepushkin93@gmail.com",
+      "cPhone": "+38(097) 699-33-54"
     }
   ]
 }
