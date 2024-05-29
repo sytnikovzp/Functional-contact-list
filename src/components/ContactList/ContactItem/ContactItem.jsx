@@ -8,7 +8,7 @@ import {
   IconButton,
   Grid,
 } from '@mui/material';
-import { Delete as DeleteIcon } from '@mui/icons-material';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import {
   selectContact,
   deleteContact,
@@ -63,7 +63,7 @@ function ContactItem({ contact }) {
         style={itemStyle}
         secondaryAction={
           <IconButton edge='end' aria-label='delete' onClick={onItemDelete}>
-            <DeleteIcon />
+            <HighlightOffIcon />
           </IconButton>
         }
       >

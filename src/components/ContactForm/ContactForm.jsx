@@ -9,9 +9,9 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import ClearIcon from '@mui/icons-material/Clear';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import BackspaceIcon from '@mui/icons-material/Backspace';
 import {
   createContact,
   updateContact,
@@ -89,7 +89,7 @@ function ContactForm() {
               fullWidth
             />
             <IconButton onClick={() => setFieldValue('fName', '')}>
-              <ClearIcon />
+              <BackspaceIcon />
             </IconButton>
           </Box>
           <Box sx={contactItemStyle}>
@@ -101,7 +101,7 @@ function ContactForm() {
               fullWidth
             />
             <IconButton onClick={() => setFieldValue('lName', '')}>
-              <ClearIcon />
+              <BackspaceIcon />
             </IconButton>
           </Box>
           <Box sx={contactItemStyle}>
@@ -115,7 +115,7 @@ function ContactForm() {
               helperText={touched.eMail && errors.eMail}
             />
             <IconButton onClick={() => setFieldValue('eMail', '')}>
-              <ClearIcon />
+              <BackspaceIcon />
             </IconButton>
           </Box>
           <Box sx={contactItemStyle}>
@@ -129,7 +129,7 @@ function ContactForm() {
               helperText={touched.cPhone && errors.cPhone}
             />
             <IconButton onClick={() => setFieldValue('cPhone', '')}>
-              <ClearIcon />
+              <BackspaceIcon />
             </IconButton>
           </Box>
         </Paper>
