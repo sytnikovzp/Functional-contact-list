@@ -17,9 +17,18 @@ function ContactForm() {
     (state) => state.contactList.currentContact
   );
 
+  const cPhoneRegExp = /^\+38\(0\d{2}\) \d{3}-\d{2}-\d{2}$/;
+
   const schema = Yup.object().shape({
-    eMail: Yup.string().email('Invalid email address').required('Required'),
-    cPhone: Yup.string().required('Required'),
+    eMail: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required field'),
+    cPhone: Yup.string()
+      .matches(
+        cPhoneRegExp,
+        'The phone must be in the format +38(0XX) XXX-XX-XX'
+      )
+      .required('Phone is required field'),
   });
 
   const onFormSubmit = (values, { resetForm }) => {
