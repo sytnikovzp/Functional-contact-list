@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import {
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  IconButton,
+  Grid,
+} from '@mui/material';
+import { Delete as DeleteIcon } from '@mui/icons-material';
+import {
   selectContact,
   deleteContact,
 } from '../../../store/slices/contactSlice';
-import './ContactItem.css';
 
 function ContactItem({ contact }) {
   const dispatch = useDispatch();
@@ -20,22 +28,30 @@ function ContactItem({ contact }) {
     dispatch(deleteContact(id));
   };
 
+  const initials = `${fName.charAt(0)}${lName.charAt(0)}`;
+
   return (
-    <div className={'contact-item '} onDoubleClick={onContactEdit}>
-      <p className='content'>
-        {fName} {lName}
-      </p>
-      <span className='delete-btn' onClick={onItemDelete}>
-        X
-      </span>
-    </div>
+    <Grid item xs={12}>
+      <ListItem
+        button
+        onClick={onContactEdit}
+        secondaryAction={
+          <IconButton edge='end' aria-label='delete' onClick={onItemDelete}>
+            <DeleteIcon />
+          </IconButton>
+        }
+      >
+        <ListItemAvatar>
+          <Avatar>{initials}</Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={`${fName} ${lName}`} />
+      </ListItem>
+    </Grid>
   );
 }
 
 ContactItem.propTypes = {
-  contact: PropTypes.object,
-  onEdit: PropTypes.func,
-  onDelete: PropTypes.func,
+  contact: PropTypes.object.isRequired,
 };
 
 export default ContactItem;
