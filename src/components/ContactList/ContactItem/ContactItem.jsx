@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import {
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText,
-  IconButton,
-  Grid,
-} from '@mui/material';
+// ===================================
+import Grid from '@mui/material/Grid';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+// ===================================
 import {
   selectContact,
   deleteContact,
@@ -50,7 +50,7 @@ function ContactItem({ contact }) {
     backgroundColor: generateAvatarColor(initialsAvatar),
   };
 
-  const itemStyle = {
+  const contactItemStyle = {
     border: '1px solid #009688',
     borderRadius: 5,
   };
@@ -60,7 +60,7 @@ function ContactItem({ contact }) {
       <ListItem
         button
         onClick={onContactEdit}
-        style={itemStyle}
+        style={contactItemStyle}
         secondaryAction={
           <IconButton edge='end' aria-label='delete' onClick={onItemDelete}>
             <HighlightOffIcon />

@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+// ===================================
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { emptyContact } from '../../constants';
-import Paper from '@mui/material/Paper';
+// ===================================
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -12,11 +13,13 @@ import IconButton from '@mui/material/IconButton';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import BackspaceIcon from '@mui/icons-material/Backspace';
+// ===================================
 import {
   createContact,
   updateContact,
   deleteContact,
 } from '../../store/slices/contactSlice';
+import { emptyContact } from '../../constants';
 
 function ContactForm() {
   const dispatch = useDispatch();
@@ -52,12 +55,11 @@ function ContactForm() {
     dispatch(deleteContact(currentContact.id));
   };
 
-  const contactItemStyle = {
+  const contactFormItemStyle = {
     display: 'flex',
     alignItems: 'baseline',
     gap: 1,
     width: '90%',
-
   };
 
   const buttonStyle = {
@@ -80,7 +82,7 @@ function ContactForm() {
             paddingTop: '10px',
           }}
         >
-          <Box sx={contactItemStyle}>
+          <Box sx={contactFormItemStyle}>
             <Field
               name='fName'
               as={TextField}
@@ -92,7 +94,7 @@ function ContactForm() {
               <BackspaceIcon />
             </IconButton>
           </Box>
-          <Box sx={contactItemStyle}>
+          <Box sx={contactFormItemStyle}>
             <Field
               name='lName'
               as={TextField}
@@ -104,7 +106,7 @@ function ContactForm() {
               <BackspaceIcon />
             </IconButton>
           </Box>
-          <Box sx={contactItemStyle}>
+          <Box sx={contactFormItemStyle}>
             <Field
               name='eMail'
               as={TextField}
@@ -118,7 +120,7 @@ function ContactForm() {
               <BackspaceIcon />
             </IconButton>
           </Box>
-          <Box sx={contactItemStyle}>
+          <Box sx={contactFormItemStyle}>
             <Field
               name='cPhone'
               as={TextField}

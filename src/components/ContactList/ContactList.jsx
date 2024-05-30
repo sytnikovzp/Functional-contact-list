@@ -1,14 +1,16 @@
-import ContactItem from './ContactItem/ContactItem';
-import { getContacts, addNewContact } from '../../store/slices/contactSlice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+// ===================================
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import Grid from '@mui/material/Grid';
+// ===================================
+import { getContacts, addNewContact } from '../../store/slices/contactSlice';
+import ContactItem from './ContactItem/ContactItem';
 
 function ContactList() {
   const dispatch = useDispatch();
