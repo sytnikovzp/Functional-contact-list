@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { contactsState } from '../../model/initialStates';
 import { CONTACT_SLICE_NAME } from '../../constants';
+import { emptyContact } from '../../constants';
 import api from '../../api/contact-service';
 
 const initialState = {
@@ -93,13 +94,7 @@ const setError = (state, action) => {
 };
 
 function createEmptyContact() {
-  return {
-    id: null,
-    fName: '',
-    lName: '',
-    eMail: '',
-    cPhone: '',
-  };
+  return emptyContact;
 }
 
 const contactSlice = createSlice({
