@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 // ===================================
 import { getContacts, addNewContact } from '../../store/slices/contactSlice';
+import { buttonStyle } from '../../constants/styles';
 import ContactItem from './ContactItem/ContactItem';
 
 function ContactList() {
@@ -23,10 +24,6 @@ function ContactList() {
 
   const onNewContact = () => {
     dispatch(addNewContact());
-  };
-
-  const buttonStyle = {
-    width: '120px',
   };
 
   return (

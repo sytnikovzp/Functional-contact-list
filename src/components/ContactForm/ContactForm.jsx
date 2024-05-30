@@ -20,6 +20,7 @@ import {
   deleteContact,
 } from '../../store/slices/contactSlice';
 import { emptyContact } from '../../constants';
+import { buttonStyle } from '../../constants/styles';
 
 function ContactForm() {
   const dispatch = useDispatch();
@@ -60,10 +61,6 @@ function ContactForm() {
     alignItems: 'baseline',
     gap: 1,
     width: '90%',
-  };
-
-  const buttonStyle = {
-    width: '120px',
   };
 
   const renderForm = ({ errors, touched, setFieldValue }) => {
