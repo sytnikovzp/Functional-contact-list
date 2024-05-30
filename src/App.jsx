@@ -25,8 +25,7 @@ function App() {
           flexDirection: 'column',
           alignItems: 'center',
           gap: 2,
-          width: '50%',
-          maxWidth: 800,
+          width: 620,
         }}
       >
         <Typography
