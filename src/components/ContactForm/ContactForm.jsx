@@ -19,6 +19,7 @@ import {
   updateContact,
   deleteContact,
 } from '../../store/slices/contactSlice';
+import { contactFormItemStyle } from '../../constants/styles';
 import { emptyContact } from '../../constants';
 import { buttonStyle } from '../../constants/styles';
 
@@ -54,13 +55,6 @@ function ContactForm() {
 
   const onContactDelete = () => {
     dispatch(deleteContact(currentContact.id));
-  };
-
-  const contactFormItemStyle = {
-    display: 'flex',
-    alignItems: 'baseline',
-    gap: 1,
-    width: '90%',
   };
 
   const renderForm = ({ errors, touched, setFieldValue }) => {

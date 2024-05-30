@@ -13,6 +13,7 @@ import {
   selectContact,
   deleteContact,
 } from '../../../store/slices/contactSlice';
+import { contactItemStyle } from '../../../constants/styles';
 
 function ContactItem({ contact }) {
   const dispatch = useDispatch();
@@ -48,11 +49,6 @@ function ContactItem({ contact }) {
 
   const avatarStyle = {
     backgroundColor: generateAvatarColor(initialsAvatar),
-  };
-
-  const contactItemStyle = {
-    border: '1px solid #009688',
-    borderRadius: 5,
   };
 
   return (
