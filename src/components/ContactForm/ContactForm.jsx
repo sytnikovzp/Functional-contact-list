@@ -171,9 +171,7 @@ function ContactForm() {
       validationSchema={schema}
       enableReinitialize
     >
-      {({ errors, touched, setFieldValue }) =>
-        renderForm({ errors, touched, setFieldValue })
-      }
+      {renderForm}
     </Formik>
   );
 }
