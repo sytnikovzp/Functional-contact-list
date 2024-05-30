@@ -14,6 +14,7 @@ import {
   deleteContact,
 } from '../../../store/slices/contactSlice';
 import { contactItemStyle } from '../../../constants/styles';
+import { generateAvatarColor } from '../../../constants/styles';
 
 function ContactItem({ contact }) {
   const dispatch = useDispatch();
@@ -31,24 +32,8 @@ function ContactItem({ contact }) {
 
   const initialsAvatar = `${fName.charAt(0)}${lName.charAt(0)}`;
 
-  const generateAvatarColor = (name) => {
-    const colors = [
-      '#F44336',
-      '#9C27B0',
-      '#3F51B5',
-      '#03A9F4',
-      '#4CAF50',
-      '#CDDC39',
-      '#FFEB3B',
-      '#FFC107',
-      '#FF5722',
-    ];
-    const charCode = name.charCodeAt(0) + name.charCodeAt(name.length - 1);
-    return colors[charCode % colors.length];
-  };
-
   const avatarStyle = {
-    backgroundColor: generateAvatarColor(initialsAvatar),
+    backgroundColor: generateAvatarColor(),
   };
 
   return (
