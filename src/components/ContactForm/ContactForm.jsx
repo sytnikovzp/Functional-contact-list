@@ -57,7 +57,7 @@ function ContactForm() {
     dispatch(deleteContact(currentContact.id));
   };
 
-  const renderForm = ({ errors, touched, setFieldValue }) => {
+  const renderForm = ({ values, errors, touched, setFieldValue }) => {
     return (
       <Form id='contact-form'>
         <Paper
@@ -144,7 +144,7 @@ function ContactForm() {
             Save
           </Button>
 
-          {currentContact.id ? (
+          {values.id ? (
             <Button
               id='delButton'
               type='button'
