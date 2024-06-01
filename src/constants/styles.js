@@ -19,5 +19,5 @@ const random = (number) => {
 };
 
 export const generateAvatarColor = () => {
-  return `rgb(${random(200)}, ${random(200)}, ${random(200)})`;
+  return `rgb(${random(220)}, ${random(220)}, ${random(220)})`;
 };
