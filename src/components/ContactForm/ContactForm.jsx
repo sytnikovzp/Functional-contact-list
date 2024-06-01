@@ -32,14 +32,19 @@ function ContactForm() {
   const currentContact = useSelector(
     (state) => state.contactList.currentContact
   );
-
   const status = useSelector((state) => state.contactList.status);
 
   const [open, setOpen] = useState(false);
+  const [severity, setSeverity] = useState();
 
   useEffect(() => {
     if (status && status !== null) {
       setOpen(true);
+      if (status.toLowerCase().includes('success')) {
+        setSeverity('success');
+      } else {
+        return setSeverity('error');
+      }
     }
   }, [status]);
 
@@ -198,7 +203,7 @@ function ContactForm() {
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <MuiAlert
           onClose={handleClose}
-          severity='success'
+          severity={severity}
           variant='filled'
           sx={{ width: '100%' }}
         >

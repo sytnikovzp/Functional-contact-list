@@ -41,6 +41,48 @@
       "lName": "Doe",
       "eMail": "jdoe@gmail.com",
       "cPhone": "+38(056) 425-35-12"
+    },
+    {
+      "id": 8,
+      "fName": "Александр",
+      "lName": "Ситников",
+      "eMail": "sytnikov.zp@gmail.com",
+      "cPhone": "+38(097) 699-33-54"
+    },
+    {
+      "id": 9,
+      "fName": "Надежда",
+      "lName": "Ситникова",
+      "eMail": "tester@gmail.com",
+      "cPhone": "+38(097) 699-32-78"
+    },
+    {
+      "id": 10,
+      "fName": "Иван",
+      "lName": "Иванов",
+      "eMail": "",
+      "cPhone": "0449379992"
+    },
+    {
+      "id": 11,
+      "fName": "Арина",
+      "lName": "Ситникова",
+      "eMail": "Arina@gmail.com",
+      "cPhone": "+38(061) 239-78-79"
+    },
+    {
+      "id": 12,
+      "fName": "Андрей",
+      "lName": "Рыкун",
+      "eMail": "xfdf@gmail.com",
+      "cPhone": "+38(066) 324-44-56"
+    },
+    {
+      "id": 13,
+      "fName": "John",
+      "lName": "Doe",
+      "eMail": "jdoe@gmail.com",
+      "cPhone": "+38(056) 425-35-12"
     }
   ]
 }
