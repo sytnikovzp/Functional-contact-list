@@ -34,6 +34,8 @@ function ContactItem({ contact }) {
 
   const avatarStyle = {
     backgroundColor: generateAvatarColor(),
+    borderRadius: '50%',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
   };
 
   return (
