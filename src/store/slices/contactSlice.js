@@ -160,6 +160,7 @@ const contactSlice = createSlice({
       state.arrContacts = state.arrContacts.filter(
         (contact) => contact.id !== payload
       );
+      state.currentContact = createEmptyContact();
       state.isFetching = false;
       state.error = null;
       state.status = 'Delete contact successfuly!';
