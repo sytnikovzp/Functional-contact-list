@@ -7,7 +7,6 @@ import api from '../../api/contact-service';
 const initialState = {
   arrContacts: contactsState,
   currentContact: createEmptyContact(),
-  isFetching: false,
   error: null,
   status: null,
 };
@@ -85,13 +84,11 @@ export const deleteContact = createAsyncThunk(
 );
 
 const setFetching = (state) => {
-  state.isFetching = true;
   state.error = null;
   state.status = null;
 };
 
 const setError = (state, action) => {
-  state.isFetching = false;
   state.error = action.payload;
   state.status = 'Error';
 };
@@ -111,13 +108,6 @@ const contactSlice = createSlice({
     addNewContact(state) {
       state.currentContact = createEmptyContact();
     },
-
-    removeContact(state, { payload }) {
-      state.arrContacts = [
-        ...state.arrContacts.filter((contact) => contact.id !== payload),
-      ];
-      state.currentContact = createEmptyContact();
-    },
   },
 
   extraReducers: (builder) => {
@@ -125,7 +115,6 @@ const contactSlice = createSlice({
     builder.addCase(getContacts.fulfilled, (state, { payload }) => {
       state.arrContacts = payload;
       state.currentContact = createEmptyContact();
-      state.isFetching = false;
       state.error = null;
       state.status = null;
     });
@@ -136,7 +125,6 @@ const contactSlice = createSlice({
     builder.addCase(createContact.fulfilled, (state, { payload }) => {
       state.arrContacts.push(payload);
       state.currentContact = createEmptyContact();
-      state.isFetching = false;
       state.error = null;
       state.status = 'Create contact successfuly!';
     });
@@ -148,7 +136,6 @@ const contactSlice = createSlice({
       state.arrContacts = state.arrContacts.map((contact) =>
         contact.id !== payload.id ? contact : payload
       );
-      state.isFetching = false;
       state.error = null;
       state.status = 'Update contact successfuly!';
     });
@@ -161,7 +148,6 @@ const contactSlice = createSlice({
         (contact) => contact.id !== payload
       );
       state.currentContact = createEmptyContact();
-      state.isFetching = false;
       state.error = null;
       state.status = 'Delete contact successfuly!';
     });
@@ -172,6 +158,6 @@ const contactSlice = createSlice({
 
 const { actions, reducer } = contactSlice;
 
-export const { selectContact, addNewContact, removeContact } = actions;
+export const { selectContact, addNewContact } = actions;
 
 export default reducer;
