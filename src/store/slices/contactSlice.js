@@ -9,6 +9,7 @@ const initialState = {
   currentContact: createEmptyContact(),
   isFetching: false,
   error: null,
+  status: null,
 };
 
 export const getContacts = createAsyncThunk(
@@ -68,7 +69,7 @@ export const updateContact = createAsyncThunk(
 
 export const deleteContact = createAsyncThunk(
   `${CONTACT_SLICE_NAME}/deleteContact`,
-  async function (id, { rejectWithValue, dispatch }) {
+  async function (id, { rejectWithValue }) {
     try {
       const responce = await api.delete(`/${CONTACT_SLICE_NAME}/${id}`);
       if (responce.status >= 400) {
@@ -76,7 +77,7 @@ export const deleteContact = createAsyncThunk(
           `Can't delete contact. Error status is ${responce.status}`
         );
       }
-      dispatch(removeContact(id));
+      return id;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -86,11 +87,13 @@ export const deleteContact = createAsyncThunk(
 const setFetching = (state) => {
   state.isFetching = true;
   state.error = null;
+  state.status = null;
 };
 
 const setError = (state, action) => {
   state.isFetching = false;
   state.error = action.payload;
+  state.status = 'Error';
 };
 
 function createEmptyContact() {
@@ -120,36 +123,47 @@ const contactSlice = createSlice({
   extraReducers: (builder) => {
     // Get all
     builder.addCase(getContacts.fulfilled, (state, { payload }) => {
-      state.isFetching = false;
-      state.error = null;
       state.arrContacts = payload;
       state.currentContact = createEmptyContact();
+      state.isFetching = false;
+      state.error = null;
+      state.status = null;
     });
     builder.addCase(getContacts.pending, setFetching);
     builder.addCase(getContacts.rejected, setError);
 
     // Create
     builder.addCase(createContact.fulfilled, (state, { payload }) => {
-      state.isFetching = false;
-      state.error = null;
       state.arrContacts.push(payload);
       state.currentContact = createEmptyContact();
+      state.isFetching = false;
+      state.error = null;
+      state.status = 'Create contact successfuly!';
     });
     builder.addCase(createContact.pending, setFetching);
     builder.addCase(createContact.rejected, setError);
 
     // Update
     builder.addCase(updateContact.fulfilled, (state, { payload }) => {
-      state.isFetching = false;
-      state.error = null;
       state.arrContacts = state.arrContacts.map((contact) =>
         contact.id !== payload.id ? contact : payload
       );
+      state.isFetching = false;
+      state.error = null;
+      state.status = 'Update contact successfuly!';
     });
     builder.addCase(updateContact.pending, setFetching);
     builder.addCase(updateContact.rejected, setError);
 
     // Delete
+    builder.addCase(deleteContact.fulfilled, (state, { payload }) => {
+      state.arrContacts = state.arrContacts.filter(
+        (contact) => contact.id !== payload
+      );
+      state.isFetching = false;
+      state.error = null;
+      state.status = 'Delete contact successfuly!';
+    });
     builder.addCase(deleteContact.pending, setFetching);
     builder.addCase(deleteContact.rejected, setError);
   },

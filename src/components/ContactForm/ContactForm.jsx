@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 // ===================================
@@ -13,6 +14,8 @@ import IconButton from '@mui/material/IconButton';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import BackspaceIcon from '@mui/icons-material/Backspace';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 // ===================================
 import {
   createContact,
@@ -29,6 +32,23 @@ function ContactForm() {
   const currentContact = useSelector(
     (state) => state.contactList.currentContact
   );
+
+  const status = useSelector((state) => state.contactList.status);
+
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (status && status !== null) {
+      setOpen(true);
+    }
+  }, [status]);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   const cPhoneRegExp = /^\+38\(0\d{2}\) \d{3}-\d{2}-\d{2}$/;
 
@@ -165,14 +185,27 @@ function ContactForm() {
   };
 
   return (
-    <Formik
-      initialValues={currentContact ? currentContact : emptyContact}
-      onSubmit={onFormSubmit}
-      validationSchema={schema}
-      enableReinitialize
-    >
-      {renderForm}
-    </Formik>
+    <>
+      <Formik
+        initialValues={currentContact ? currentContact : emptyContact}
+        onSubmit={onFormSubmit}
+        validationSchema={schema}
+        enableReinitialize
+      >
+        {renderForm}
+      </Formik>
+
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <MuiAlert
+          onClose={handleClose}
+          severity='success'
+          variant='filled'
+          sx={{ width: '100%' }}
+        >
+          {status}
+        </MuiAlert>
+      </Snackbar>
+    </>
   );
 }
 
