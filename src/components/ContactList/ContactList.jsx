@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 // ===================================
 import { getContacts, addNewContact } from '../../store/slices/contactSlice';
-import { buttonStyle } from '../../constants/styles';
+import { buttonStyle } from '../../services/styleService';
 import ContactItem from './ContactItem/ContactItem';
 
 function ContactList() {

@@ -14,8 +14,8 @@ import {
   selectContact,
   deleteContact,
 } from '../../../store/slices/contactSlice';
-import { contactItemStyle } from '../../../constants/styles';
-import { generateAvatarColor } from '../../../constants/styles';
+import { contactItemStyle } from '../../../services/styleService';
+import { generateAvatarColor } from '../../../services/styleService';
 
 function ContactItem({ contact }) {
   const dispatch = useDispatch();

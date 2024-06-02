@@ -22,9 +22,9 @@ import {
   updateContact,
   deleteContact,
 } from '../../store/slices/contactSlice';
-import { contactFormItemStyle } from '../../constants/styles';
 import { emptyContact } from '../../constants';
-import { buttonStyle } from '../../constants/styles';
+import { contactFormItemStyle } from '../../services/styleService';
+import { buttonStyle } from '../../services/styleService';
 
 function ContactForm() {
   const dispatch = useDispatch();
