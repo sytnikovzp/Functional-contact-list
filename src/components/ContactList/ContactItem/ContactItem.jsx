@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
@@ -41,7 +42,7 @@ function ContactItem({ contact }) {
   return (
     <Grid item xs={12}>
       <ListItem
-        button
+        disablePadding
         onClick={onContactEdit}
         style={contactItemStyle}
         secondaryAction={
@@ -50,10 +51,12 @@ function ContactItem({ contact }) {
           </IconButton>
         }
       >
-        <ListItemAvatar>
-          <Avatar style={avatarStyle}>{initialsAvatar}</Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={`${fName} ${lName}`} />
+        <ListItemButton>
+          <ListItemAvatar>
+            <Avatar style={avatarStyle}>{initialsAvatar}</Avatar>
+          </ListItemAvatar>
+          <ListItemText primary={`${fName} ${lName}`} />
+        </ListItemButton>
       </ListItem>
     </Grid>
   );
